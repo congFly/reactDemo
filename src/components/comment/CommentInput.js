@@ -38,6 +38,29 @@ class CommentInput extends Component {
         this.setState({content: ''})//通过 setState 清空用户输入的评论内容（但为了用户体验，保留输入的用户名）。
     }
 
+
+    _saveUsername(username) {
+        localStorage.setItem('username', username)
+    }
+
+
+    handleUsernameBlur(event) {
+        this._saveUsername(event.target.value)
+    }
+
+    _loadUsername() {
+        const username = localStorage.getItem('username');
+        if (username) {
+            this.setState({username})
+        }
+    }
+
+
+//不依赖 DOM 操作的组件启动的操作都可以放在 componentWillMount 中进行
+    componentWillMount() {
+        this._loadUsername()
+    }
+
     componentDidMount() {
         this.textarea.focus();
     }
@@ -50,6 +73,7 @@ class CommentInput extends Component {
                     <span className='comment-field-name'>用户名：</span>
                     <div className='comment-field-input'>
                         <input value={this.state.username}
+                               onBlur={this.handleUsernameBlur.bind(this)}
                                onChange={this.handleUsernameChange.bind(this)}/>
                     </div>
                 </div>
