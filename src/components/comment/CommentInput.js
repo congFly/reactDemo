@@ -2,8 +2,13 @@
  * Created by 18829 on 2017/10/10.
  */
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 
 class CommentInput extends Component {
+    static propTypes = {
+        onSubmit: PropTypes.func
+    };
+
     constructor() {
         super();
         //在组件的构造函数中初始化一个 state 来保存用户名和评论内容两个状态：
@@ -33,6 +38,11 @@ class CommentInput extends Component {
         this.setState({content: ''})//通过 setState 清空用户输入的评论内容（但为了用户体验，保留输入的用户名）。
     }
 
+    componentDidMount() {
+        this.textarea.focus();
+    }
+
+
     render() {
         return (
             <div className='comment-input'>
@@ -46,7 +56,8 @@ class CommentInput extends Component {
                 <div className='comment-field'>
                     <span className='comment-field-name'>评论内容：</span>
                     <div className='comment-field-input'>
-                        <textarea value={this.state.content}
+                        <textarea ref={(textarea) => this.textarea = textarea}
+                                  value={this.state.content}
                                   onChange={this.handleContentChange.bind(this)}/>
                     </div>
                 </div>

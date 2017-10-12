@@ -6,6 +6,7 @@ import {HashRouter as Router, Route} from 'react-router-dom';
 
 import Index from './components/comment/Index'
 import Clock from './components/comment/Clock'
+import Editor from './components/comment/Editor'
 import AutoFocusInput from './components/comment/AutoFocusInput'
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
         return (
             <div>
                 <Router>
-                    <Route path="/" component={AutoFocusInput}></Route>
+                    <Route path="/" component={CommentApp}></Route>
                 </Router>
             </div>
         );
