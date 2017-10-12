@@ -22,30 +22,26 @@
 
 
 <script type="text/babel">
-    var Child = React.createClass({
+    var Card = React.createClass({
 
-
-        componentWillMount() {
-            console.log('component will mount')
-        },
-
-        componentDidMount() {
-            console.log('component did mount')
-        },
-
-
-        render (){
-            console.log('render')
+        render(){
+            console.log(this.props.children)
             return (
-                    <div>
-                        <h1 className="title">React12131</h1>
+                    <div className="card">
+                        <div className="card-content">
+                            {this.props.children}
+                        </div>
                     </div>
             )
         }
     });
 
     ReactDOM.render(
-            <Child />,
+            <Card>
+                <h2>React.js 小书</h2>
+                <div>开源、免费、专业、简单</div>
+                订阅：<input />
+            </Card>,
         document.getElementById('content')
     );
 
