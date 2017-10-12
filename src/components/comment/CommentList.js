@@ -7,7 +7,7 @@ import Comment from './Comment'
 class CommentList extends Component {
     static defaultProps = {
         comments: []
-    }
+    };
 
     render() {
         return (
