@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Main from './components/Main';
+import CommentApp from './components/comment/CommentApp';
 import {HashRouter as Router, Route} from 'react-router-dom';
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
         return (
             <div>
                 <Router>
-                    <Route path="/" component={Main}></Route>
+                    <Route path="/" component={CommentApp}></Route>
                 </Router>
             </div>
         );
