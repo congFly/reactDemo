@@ -1,0 +1,114 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+<div id="content">
+
+</div>
+
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+<script src="js/browser.min.js"></script>
+
+<!--添加 Markdown-->
+<script src="http://fb.me/react-0.13.0.js"></script>
+<script src="http://fb.me/JSXTransformer-0.13.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+
+
+<script type="text/babel">
+    /*    var data = [
+     {author: "Pete Hunt", text: "This is one comment"},
+     {author: "Jordan Walke", text: "This is *another* comment"}
+     ];*/
+
+    var CommentBox = React.createClass({
+        getInitialState: function () {
+            return {
+                data: [{author: "Pete Hunt", text: "This is one comment"},
+                    {author: "Jordan Walke", text: "This is *another* comment"}]
+            };
+        },
+        handleCommentSubmit: function (comment) {
+            // TODO: submit to the server and refresh the list
+        },
+        render: function () {
+            return (
+                    <div className="commentBox">
+                        <h1>comment</h1>
+                        <CommentList data={this.state.data}/>
+                        <CommentForm onCommentSubmit={this.handleCommentSubmit()}/>
+                    </div>
+            )
+        }
+    });
+
+    var CommentList = React.createClass({
+        render: function () {
+            var commentNodes = this.props.data.map(function (comment) {
+                return (
+                        <Comment author={comment.author}>{comment.text}</Comment>
+                );
+            });
+            return (
+                    <div className="commentList">
+                        {commentNodes}
+                    </div>
+            )
+        }
+    });
+
+    var CommentForm = React.createClass({
+        handelSubmit: function (e) {
+            e.preventDefault();
+                var author1 = ReactDOM.findDOMNode(this.refs.author);
+                console.log(e.target.value);
+                var text1 = ReactDOM.findDOMNode(this.refs.text);
+                console.log(text1);
+        },
+        render: function () {
+            return (
+                    <from className="commentForm">
+                        <input type="text" placeholder="Your name" ref="author"  onClick={this.handelSubmit}/>
+                        <input type="text" placeholder="Say something..." ref="text"/>
+                        <button>submit</button>
+                    </from>
+            );
+        }
+    });
+
+    var converter = new Showdown.converter();
+    var Comment = React.createClass({
+        render: function () {
+            var rawMarkup = converter.makeHtml(this.props.children.toString());
+            return (
+                    <div className="comment">
+                        <h2 className="commentAuthor">
+                            {this.props.author}
+                        </h2>
+                        <span dangerouslySetInnerHTML={{__html: rawMarkup}}/>
+                    </div>
+            )
+        }
+    });
+
+
+    ReactDOM.render(
+            <CommentBox />,
+        document.getElementById('content')
+    );
+
+</script>
+</body>
+</html>

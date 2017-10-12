@@ -1,0 +1,59 @@
+.sider, .header, .content, .footer {
+    background-color: #ffffff;
+}
+
+.order-header > h1 {
+    margin: 0;
+    font-size: 24px;
+    text-overflow: ellipsis;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.breadcrumb {
+    float: right;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 0 5px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    border-radius: 2px;
+}
+
+.breadcrumb > li {
+    display: inline-block;
+    float: left;
+    list-style: none;
+    padding: 0 5px;
+}
+
+.breadcrumb > li:after {
+    content: '>';
+    color: #cccccc;
+    padding: 0 5px;
+}
+
+.breadcrumb > li:last-child:after {
+    content: '';
+}
+
+.breadcrumb > li > a {
+    color: #444;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.order-search {
+    margin-right: 20px;
+    float: right;
+    margin-bottom: 0;
+}
+
+.order-status {
+    display: block;
+    margin-top: 25px
+}
