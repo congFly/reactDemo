@@ -18,6 +18,29 @@ class CommentInput extends Component {
         }
     }
 
+
+//不依赖 DOM 操作的组件启动的操作都可以放在 componentWillMount 中进行
+    componentWillMount() {
+        this._loadUsername()
+    }
+
+    componentDidMount() {
+        this.textarea.focus();
+    }
+
+
+    _saveUsername(username) {
+        localStorage.setItem('username', username)
+    }
+
+
+    _loadUsername() {
+        const username = localStorage.getItem('username');
+        if (username) {
+            this.setState({username})
+        }
+    }
+
     handleUsernameChange(event) {
         this.setState({
             username: event.target.value
@@ -39,32 +62,9 @@ class CommentInput extends Component {
     }
 
 
-    _saveUsername(username) {
-        localStorage.setItem('username', username)
-    }
-
-
     handleUsernameBlur(event) {
         this._saveUsername(event.target.value)
     }
-
-    _loadUsername() {
-        const username = localStorage.getItem('username');
-        if (username) {
-            this.setState({username})
-        }
-    }
-
-
-//不依赖 DOM 操作的组件启动的操作都可以放在 componentWillMount 中进行
-    componentWillMount() {
-        this._loadUsername()
-    }
-
-    componentDidMount() {
-        this.textarea.focus();
-    }
-
 
     render() {
         return (
