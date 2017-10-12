@@ -4,17 +4,25 @@
 import React, {Component} from 'react';
 
 class Clock extends Component {
+
+    //一般会把组件的 state 的初始化工作放在 constructor 里面去做
     constructor() {
         super();
         this.state = {
             date: new Date()
         }
     }
-//像 Ajax 数据的拉取操作、一些定时器的启动等，就可以放在 componentWillMount 里面进行
+
+//在componentWillMount进行组件的启动工作，如 Ajax 数据拉取、定时器的启动
     componentWillMount() {
         this.timer = setInterval(() => {
             this.setState({date: new Date()})
         }, 1000)
+    }
+//组件从页面上销毁的时候，有时候需要一些数据的清理，
+//如定时器的清理，就会放在 componentWillUnmount 里面去做
+    componentWillUnmount() {
+        clearInterval(this.timer)
     }
 
     render() {
