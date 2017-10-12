@@ -26,11 +26,11 @@ class CommentInput extends Component {
     }
 
     handleSubmit() {
-        if (this.props.onSubmit) {
+        if (this.props.onSubmit) {   //判断 props 中是否传入了 onSubmit 属性,onSubmit从父组件传递过来的
             const {username, content} = this.state;
-            this.props.onSubmit({username, content})
+            this.props.onSubmit({username, content})   //用户输入的用户名和评论传入该函数
         }
-        this.setState({content: ''})
+        this.setState({content: ''})//通过 setState 清空用户输入的评论内容（但为了用户体验，保留输入的用户名）。
     }
 
     render() {
@@ -39,17 +39,21 @@ class CommentInput extends Component {
                 <div className='comment-field'>
                     <span className='comment-field-name'>用户名：</span>
                     <div className='comment-field-input'>
-                        <input value={this.state.username} onChange={this.handleUsernameChange.bind(this)}/>
+                        <input value={this.state.username}
+                               onChange={this.handleUsernameChange.bind(this)}/>
                     </div>
                 </div>
                 <div className='comment-field'>
                     <span className='comment-field-name'>评论内容：</span>
                     <div className='comment-field-input'>
-                        <textarea value={this.state.content} onChange={this.handleContentChange.bind(this)}/>
+                        <textarea value={this.state.content}
+                                  onChange={this.handleContentChange.bind(this)}/>
                     </div>
                 </div>
                 <div className='comment-field-button'>
-                    <button onClick={this.handleSubmit.bind(this)}>
+                    {/*当用户点击发布按钮的时候，CommentInput 调用 props 中的回调函数并且将 state 传入该函数即可。*/}
+                    <button
+                        onClick={this.handleSubmit.bind(this)}>
                         发布
                     </button>
                 </div>
