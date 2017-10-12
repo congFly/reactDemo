@@ -40,7 +40,6 @@ class CommentInput extends Component {
             this.setState({username})
         }
     }
-
     handleUsernameChange(event) {
         this.setState({
             username: event.target.value
