@@ -40,6 +40,7 @@ class CommentInput extends Component {
             this.setState({username})
         }
     }
+
     handleUsernameChange(event) {
         this.setState({
             username: event.target.value
@@ -54,8 +55,13 @@ class CommentInput extends Component {
 
     handleSubmit() {
         if (this.props.onSubmit) {   //判断 props 中是否传入了 onSubmit 属性,onSubmit从父组件传递过来的
-            const {username, content} = this.state;
-            this.props.onSubmit({username, content})   //用户输入的用户名和评论传入该函数
+            // const {username, content} = this.state;
+            this.props.onSubmit({
+                username: this.state.username,
+                content: this.state.content,
+                createTime: +new Date()
+            });
+            // this.props.onSubmit({username, content})   //用户输入的用户名和评论传入该函数
         }
         this.setState({content: ''})//通过 setState 清空用户输入的评论内容（但为了用户体验，保留输入的用户名）。
     }
