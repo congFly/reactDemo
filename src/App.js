@@ -8,13 +8,14 @@ import Index from './components/comment/Index'
 import Clock from './components/comment/Clock'
 import Editor from './components/comment/Editor'
 import AutoFocusInput from './components/comment/AutoFocusInput'
+import IndexDemo from './components/comment/IndexDemo'
 
 class App extends Component {
     render() {
         return (
             <div>
                 <Router>
-                    <Route path="/" component={CommentApp}></Route>
+                    <Route path="/" component={IndexDemo}></Route>
                 </Router>
             </div>
         );

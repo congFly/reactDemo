@@ -1,7 +1,7 @@
 /**
  * Created by 18829 on 2017/10/13.
  */
-import wrapWithLoadData from './wrapWithLoadData'
+import wrapWithAjaxData from './wrapWithAjaxData'
 
 class InputWithUserName extends Component {
     render() {
@@ -9,7 +9,5 @@ class InputWithUserName extends Component {
     }
 }
 
-
-InputWithUserName = wrapWithLoadData(InputWithUserName,'username');
-
+InputWithUserName = wrapWithAjaxData(InputWithUserName, 'username')
 export default InputWithUserName
