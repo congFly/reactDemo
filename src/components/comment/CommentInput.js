@@ -25,7 +25,7 @@ class CommentInput extends Component {
     }
 
     componentDidMount() {
-        this.textarea.focus();
+        this.refs.textarea.focus();
     }
 
 
@@ -33,11 +33,10 @@ class CommentInput extends Component {
         localStorage.setItem('username', username)
     }
 
-
     _loadUsername() {
         const username = localStorage.getItem('username');
         if (username) {
-            this.setState({username})
+            this.setState({username: username})
         }
     }
 
@@ -63,7 +62,7 @@ class CommentInput extends Component {
             });
             // this.props.onSubmit({username, content})   //用户输入的用户名和评论传入该函数
         }
-        this.setState({content: ''})//通过 setState 清空用户输入的评论内容（但为了用户体验，保留输入的用户名）。
+        this.setState({content: ''})//通过 setState 清空用户输入的评论内容（为了用户体验，保留输入的用户名）。
     }
 
 
@@ -85,7 +84,7 @@ class CommentInput extends Component {
                 <div className='comment-field'>
                     <span className='comment-field-name'>评论内容：</span>
                     <div className='comment-field-input'>
-                        <textarea ref={(textarea) => this.textarea = textarea}
+                        <textarea ref='textarea'
                                   value={this.state.content}
                                   onChange={this.handleContentChange.bind(this)}/>
                     </div>
