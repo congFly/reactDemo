@@ -9,22 +9,6 @@ class ThemeSwitch extends Component {
         store: PropTypes.object
     };
 
-/*    constructor() {
-        super()
-        this.state = {themeColor: ''}
-    }
-
-    componentWillMount() {
-        const { store } = this.context;
-        this._updateThemeColor();
-        store.subscribe(() => this._updateThemeColor())
-    }
-
-    _updateThemeColor() {
-        const {store} = this.context;
-        const state = store.getState();
-        this.setState({themeColor: state.themeColor})
-    }*/
 
     handleSwitchColor(color) {
         const {store} = this.context;
@@ -54,6 +38,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-Header = connect(mapStateToProps)(Header);
+// Header = connect(mapStateToProps)(ThemeSwitch);
 
-export default ThemeSwitch
+export default connect(mapStateToProps)(ThemeSwitch);

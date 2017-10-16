@@ -11,13 +11,40 @@ export const connect = (mapStateToProps) => (WrappedComponent) => {
             store: PropTypes.object
         };
 
-        render() {
+        constructor() {
+            super();
+            this.state = {allProps: {}}
+        }
+
+        componentWillMount() {
             const {store} = this.context;
-            let stateProps = mapStateToProps(store.getState());
-            // {...stateProps} 意思是把这个对象里面的属性全部通过 `props` 方式传递进去
-            return <WrappedComponent {...stateProps} />
+            this._updateProps();
+            store.subscribe(() => this._updateProps())
+        }
+
+        _updateProps() {
+            const {store} = this.context;
+            let stateProps = mapStateToProps(store.getState(), this.props);
+            this.setState({
+                allProps: {
+                    ...stateProps,
+                    ...this.props
+                }
+            })
+        }
+
+        render() {
+            return <WrappedComponent {...this.setState.allProps} />
         }
     }
 
     return Connect
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSwitchColor: (color) => {
+            dispatch({type: 'CHANGE_COLOR', themeColor: color})
+        }
+    }
 };
