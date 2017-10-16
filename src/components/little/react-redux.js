@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 
 export const connect = (mapStateToProps) => (WrappedComponent) => {
@@ -24,10 +25,16 @@ export const connect = (mapStateToProps) => (WrappedComponent) => {
 
         _updateProps() {
             const {store} = this.context;
-            let stateProps = mapStateToProps(store.getState(), this.props);
+            let stateProps = mapStateToProps
+                ? mapStateToProps(store.getState(), this.props)
+                : {};
+            let dispatchProps = mapDispatchToProps
+                ? mapDispatchToProps(store.dispatch, this.props)
+                : {};
             this.setState({
                 allProps: {
                     ...stateProps,
+                    ...dispatchProps,
                     ...this.props
                 }
             })
@@ -41,10 +48,23 @@ export const connect = (mapStateToProps) => (WrappedComponent) => {
     return Connect
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onSwitchColor: (color) => {
-            dispatch({type: 'CHANGE_COLOR', themeColor: color})
+export class Provider extends Component {
+    static propTypes = {
+        store: PropTypes.object,
+        children: PropTypes.any
+    };
+
+    static childContextType = {
+        store: PropTypes.object
+    };
+
+    getChildContexy() {
+        return {
+            store: this.props.store
         }
     }
-};
+
+    render() {
+        <div>{this.props.children}</div>
+    }
+}

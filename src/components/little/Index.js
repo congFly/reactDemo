@@ -3,8 +3,7 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-
-import ReactDOM from 'react-dom'
+import {Provider} from './react-redux'
 import Header from './Header'
 import Content from './Content'
 
@@ -49,8 +48,10 @@ class Index extends Component {
     render() {
         return (
             <div>
-                <Header />
-                <Content />
+                <Provider>
+                    <Header />
+                    <Content />
+                </Provider>
             </div>
         )
     }
