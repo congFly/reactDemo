@@ -4,18 +4,20 @@ import CommentApp from './components/comment/CommentApp';
 import {HashRouter as Router, Route} from 'react-router-dom';
 
 
-import Index from './components/comment/Index'
-import Clock from './components/comment/Clock'
+// import Index from './components/comment/Index'
+/*import Clock from './components/comment/Clock'
 import Editor from './components/comment/Editor'
 import AutoFocusInput from './components/comment/AutoFocusInput'
-import IndexDemo from './components/comment/IndexDemo'
+import IndexDemo from './components/comment/IndexDemo'*/
+
+import Index from '../src/components/little/Index'
 
 class App extends Component {
     render() {
         return (
             <div>
                 <Router>
-                    <Route path="/" component={IndexDemo}></Route>
+                    <Route path="/" component={Index}></Route>
                 </Router>
             </div>
         );
